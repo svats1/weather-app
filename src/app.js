@@ -1,18 +1,26 @@
-const img = document.querySelector("img");
+const stats = document.querySelector(".stats");
 const button = document.querySelector("button");
 const input = document.querySelector("input");
 
-const key = "";
+const key = "63a29a8fa8eb1f1f14a6fc6f868cc076";
 
 button.addEventListener("click", (e) => {
   e.preventDefault();
 
-  const url = "63a29a8fa8eb1f1f14a6fc6f868cc076";
+  const city = input.value;
+
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${key}`;
 
   async function getWeather() {
     try {
       const response = await fetch(url, { mode: "cors" });
-      console.log(response.json());
+      const data = await response.json();
+      let temp_C = Math.round(data.main.temp - 273, 3);
+      let temp_F = (temp_C * 9) / 5 + 32;
+      stats.textContent = `Current temp in ${city} is ${temp_C} C or ${temp_F} F`;
     } catch {}
   }
+
+  getWeather();
+  input.value = "";
 });
