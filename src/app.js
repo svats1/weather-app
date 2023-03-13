@@ -18,7 +18,9 @@ button.addEventListener("click", (e) => {
       let temp_C = Math.round(data.main.temp - 273, 3);
       let temp_F = (temp_C * 9) / 5 + 32;
       stats.textContent = `Current temp in ${city} is ${temp_C} C or ${temp_F} F`;
-    } catch {}
+    } catch {
+      alert("Pass a Value");
+    }
   }
 
   getWeather();
