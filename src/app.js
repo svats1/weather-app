@@ -15,9 +15,10 @@ button.addEventListener("click", (e) => {
     try {
       const response = await fetch(url, { mode: "cors" });
       const data = await response.json();
+      console.log(data);
       let temp_C = Math.round(data.main.temp - 273, 3);
       let temp_F = (temp_C * 9) / 5 + 32;
-      stats.textContent = `Current temp in ${city} is ${temp_C} C or ${temp_F} F`;
+      stats.textContent = `Current temp in ${city} is ${temp_C} C or ${temp_F} F. Wind is about ${data.wind.speed} kph. Humidity is about ${data.main.humidity}%.`;
     } catch {
       alert("Pass a Value");
     }
