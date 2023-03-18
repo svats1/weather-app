@@ -17,7 +17,7 @@ button.addEventListener("click", (e) => {
       const data = await response.json();
       console.log(data);
       let temp_C = Math.round(data.main.temp - 273, 3);
-      let temp_F = (temp_C * 9) / 5 + 32;
+      let temp_F = Math.round((temp_C * 9) / 5 + 32);
       stats.textContent = `Current temp in ${city} is ${temp_C} C or ${temp_F} F. Wind is about ${data.wind.speed} m/s. Humidity is about ${data.main.humidity}%. Cloud cover around ${data.clouds.all}%.`;
     } catch {
       alert("Pass a Value");
